@@ -27,7 +27,7 @@
         password:password
     }
 
-    localStorage.setItem(user,JSON.stringify(user))
+    localStorage.setItem("user",JSON.stringify(user))
     console.log(user);
     
 
@@ -37,21 +37,21 @@
     })
 
 // login
-    document.getElementById("loginForm").addEventListener("submit",e => {
+    document.getElementById("loginForm").addEventListener("submit", e => {
         e.preventDefault() 
 
         const loginMail = document.getElementById("login-email").value
         const loginPass = document.getElementById("login-password").value
 
-        const storedUser = localStorage.getItemItem("user")
+        const storedUser = JSON.parse(localStorage.getItem("user"))
 
         if(storedUser === null){
             alert("account not found.please signup")
             return
         }
-        const user = JSON.parse(storedUser)
+        // const user = JSON.parse(storedUser)
 
-        if(loginMail === user.email && loginPass === user.password){
+        if(loginMail === storedUseruser.email && loginPass === storedUseruser.password){
             localStorage.setItem("isLoogedIn","true")
 
             window.location.href = "dashboard.html"
