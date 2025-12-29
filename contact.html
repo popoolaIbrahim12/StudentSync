@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student</title>
     <link rel="stylesheet" href="contact.css">
-    <link href='https://cdn.boxicons.com/3.0.6/fonts/basic/boxicons.min.css' rel='stylesheet'>
+   <link href='https://cdn.boxicons.com/3.0.6/fonts/basic/boxicons.min.css' rel='stylesheet'>
+<link href='https://cdn.boxicons.com/3.0.6/fonts/brands/boxicons-brands.min.css' rel='stylesheet'>
 </head>
 <body>
  <header>
@@ -20,8 +21,8 @@
       
       <nav class="navbar"> 
         
-         <!-- <a href="home.html" style="--i:1;"> Home</a> -->
-      <a href="About.html"   style="--i:2;">  About</a>
+         <a href="home.html" style="--i:1;"> Home</a>
+      <a href="About.html" >  About</a>
       <a href="features.html" style="--i:3;"> Features</a>
        <a href="contact.html" style="--i:4;">   Contact</a>
        <a href="signup.html"> <button class="signup">Sign Up</button></a>
@@ -30,8 +31,84 @@
    
    
  </header>
- <section class="hero">
- contact
- </section>
+<section class="hero">
+    <div class="hero-content">
+        <h1>Contact Us</h1>
+   <p>Have questions? We'd love to hear from you.</p>
+       
+    </div>
+
+</section>
+
+<section class="contact-section">
+ <!-- <h2>Send a message</h2> -->
+
+   <form class="contact-form" id="contactForm">
+      <h2 class="message">Send a Message</h2>
+        <input type="text" id="name" placeholder=" Name" required>
+        <input type="email" id="email" placeholder=" Email" required>
+        <input type="email" id="email" placeholder=" Subject" required>
+        <textarea id="message" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+    </form>
+         <div class="contact-info">
+            <h2>Get in touch</h2>
+      <div class="contact-box">
+       <h3>✉️ Email</h3>
+       <p>support@studentSync</p>
+      </div>
+   
+      <div class="contact-box">
+       <h3>💬 support</h3>
+       <p>support@studentSync</p>
+      </div>
+   
+      <div class="contact-box">
+       <h3>📊 Documentation</h3>
+       <p>support@studentSync</p>
+      </div>
+   
+    </div>
+
+</section>
+
+<section class="faq">
+<div class="faq-grid">
+  
+        <div class="faq-card">
+           
+            <h3>How is data stored?</h3>
+            <p>All data is stored locally in your browser using localStorage. No data is sent to any server.</p>
+        </div>
+
+        <div class="faq-card">
+            
+            <h3>Can I export my data?</h3>
+            <p>Currently, data is stored in your browser. You can access it through the dashboard at any time.</p>
+        </div>
+
+        <div class="faq-card">
+          
+            <h3>Is this mobile-friendly?  </h3>
+            <p>Yes! The dashboard is fully responsive and works great on tablets and smartphones.</p>
+        </div>
+
+        <div class="faq-card">
+         
+            <h3>What browsers are supported?</h3>
+            <p>All modern browsers including Chrome, Firefox, Safari, and Edge are fully supported.
+
+.</p>
+        </div>
+
+     
+
+     
+</div>
+</section>
+
+<footer>
+   <p>© 2025 StudentSync. All rights reserved. Built with html,css and javascript by popoola ibrahim</p>
+</footer>   
 </body>
 </html>

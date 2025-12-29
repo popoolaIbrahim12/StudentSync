@@ -3,10 +3,11 @@
 
 
 // })
+console.log("auth js is loaded");
 
 // signup
 
-    document.getElementById("signUpForm").addEventListener("submit",e => {
+    document.getElementById("signUpForm").addEventListener("submit", e => {
 
     e.preventDefault()
 
@@ -28,7 +29,7 @@
     }
 
     localStorage.setItem("user",JSON.stringify(user))
-    console.log(user);
+   
     
 
     alert("account created succesfully")
@@ -37,25 +38,19 @@
     })
 
 // login
-    document.getElementById("loginForm").addEventListener("submit", e => {
-        e.preventDefault() 
+document.getElementById(loginForm).addEventListener("submit", e => {
+    e.preventDefault()
 
-        const loginMail = document.getElementById("login-email").value
-        const loginPass = document.getElementById("login-password").value
-
-        const storedUser = JSON.parse(localStorage.getItem("user"))
-
-        if(storedUser === null){
-            alert("account not found.please signup")
-            return
-        }
-        // const user = JSON.parse(storedUser)
-
-        if(loginMail === storedUseruser.email && loginPass === storedUseruser.password){
-            localStorage.setItem("isLoogedIn","true")
-
-            window.location.href = "dashboard.html"
-        } else{
-            alert("wrong email or password")
-        }
-    })
+    const storedUser = JSON.parse(localStorage.getItem("user"))
+    
+    if(
+        storedUser &&
+        loginEmail.value === storedUser.email &&
+        loginPassword.value === storedUser.password
+    ) {
+        localStorage.setItem("isLoggedIn","true")
+        window.location.href = "dashboard.html"
+    } else {
+        alert("invalid login cridentials")
+    }
+})

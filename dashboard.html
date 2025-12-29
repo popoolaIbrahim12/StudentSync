@@ -4,8 +4,93 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
 </head>
 <body>
-    <h1>Dashboard</h1>
+     <header>
+   
+    
+       <a href="home.html" class="hom"> <nav class="logo">StudentSync</nav></a>
+          <!-- <input type="checkbox" id="check">
+       <label for="check" class="icons">
+      <i class='bx bx-menu' id ="menu-icon"></i> 
+        <i class='bx bx-x' id ="close-icon"></i> 
+     </label>  -->
+      
+      <nav class="navbar"> 
+        
+         <!-- <a href="home.html"> Home</a>
+      <a href="About.html"   >  About</a>
+      <a href="features.html"> Features</a>
+       <a href="contact.html" >   Contact</a> -->
+       <a href="login.html"> <button class="signup">Log Out</button></a>
+      </nav>
+ 
+   
+   
+ </header>
+
+ <section class="hero">
+    <div class="hero-content">
+        <h1> Student Management Dashboard</h1>
+   <p>Manage, search, and analyze student data.</p>
+       
+    </div>
+
+</section>
+
+<section class="analytics">
+    <h2>Analytics</h2>
+
+    <div class="analytics-grid">
+           <div class="analytics-card">
+            <div class="analytics-icon">👥</div>
+            <div class="analytics-data">
+                <h3 id="totalStudents">0</h3>
+            <p>Total tudent</p>
+            </div>
+        </div>
+        <div class="analytics-card">
+            <div class="analytics-icon">📊</div>
+            <div class="analytics-data">
+                <h3 id="AverageStudents">0</h3>
+            <p>Average Score</p>
+            </div>
+        </div>
+
+       <div class="analytics-card">
+            <div class="analytics-icon">🏆</div>
+            <div class="analytics-data">
+                <h3 id="totalStudents">0</h3>
+            <p>Highest Score</p>
+            </div>
+        </div>
+
+            <div class="analytics-card">
+            <div class="analytics-icon">⭐</div>
+            <div class="analytics-data">
+                <h3 id="totalStudents">-</h3>
+            <p>Top Student</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="student-section">
+ <!-- <h2>Send a message</h2> -->
+
+ <div class="inp-section">
+      <form class="student-form" id="StudentForm">
+      <h2 >Add new student</h2>
+        <input type="text" id="name" placeholder=" Name" required>
+        <input type="email" id="email" placeholder=" Email" required>
+        <input type="number" id="email" placeholder=" score" required>
+      
+        <button type="submit">Add Student</button>
+    </form>
+ </div>
+       
+
+</section>
 </body>
 </html>
