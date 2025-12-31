@@ -17,7 +17,7 @@ header{
      left: 0;
      padding: 1.3rem 10%;
     width: 100%;
-    /* background-color:#1e1e1e; */
+    background-color:#1e1e1e;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -25,18 +25,6 @@ header{
      box-sizing: border-box;
      
 }
-/* header::before{
- content : "";
- position: absolute;
- width:100%;
- height:100%;
- background: red;
- top: 0;
- left: 0;
-   background-color:#1e1e1e;
-   box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
-   z-index : -1;
-} */
 
 .logo{
     font-size: 2rem;
@@ -80,7 +68,11 @@ margin-left: 2.5rem;
 .hom{
     text-decoration:none;
 }
-
+.welcome{
+    height:5vh;
+    margin-bottom: 1rem;
+    background-color:#35469B 
+}
 .hero{
     min-height: 45vh;
     margin-top: 70px;
@@ -166,77 +158,132 @@ margin-left: 2.5rem;
 }
 
 .student-section{
-    padding: 60px 10%;
+    padding: 50px 10%;
     background-color: #1B1B1B;
-    color: white;
-    text-align: center;
+     
 }
 
 .student-section h2{
-    font-size: 2.5rem;
-    margin-bottom: 50px;
+        font-size: 2rem;
+    margin-bottom: 40px;
     color: #35469B;
     font-family: sans-serif;
 }
-
-.student-section input{
-    padding:12px;
-    width:250px;
+.student-form{
+    padding: 40px 5%;
+    background:black;
     border-radius: 10px;
-    border: 1px solid grey;
-    background: none;
+    border:1px solid grey;
+    flex:1;
+    display:flex;
+    gap:20px
 }
-
-.student-section button{
-width:150px;
-height:45px;
-    background: #35469B;
+.student-form input{
+    padding:12px;
+    flex:1;
+    border:1px solid grey;
+    border-radius: 10px;
+    background:none;
+    color:white;
+}
+.student-form button {
+    padding: 12px;
+    background:#35469B;
     color:white;
     border-radius: 10px;
-    border:none
+    border:none;
+    cursor:pointer;
+}
+.search{
+    padding: 40px 10%;
+    background-color: #1B1B1B;
+     
+}
+.search h2{
+           font-size: 2rem;
+    margin-bottom: 40px;
+    color: #35469B;
+    font-family: sans-serif;
+}
+.searchInp {
+       padding: 40px 5%;
+    background:black;
+    display:flex;
+    gap:10px;
+    border-radius: 10px;
+    border: 1px solid grey;
+    
+}
+.searchInp input {
+    padding:12px;
+    width:90%;
+    flex:1;
+    border:1px solid grey;
+    background: none;
+    border-radius: 10px;
+    color:white
+}
+.searchInp button{
+     padding: 12px;
+    background:#35469B;
+    color:white;
+    border-radius: 10px;
+    border:none;
+    cursor:pointer
+}
+.theTable{
+    display: flex;
+    justify-content: center;
+}
+table {
+    width: 80%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    color:white;
+}
+
+thead {
+    background-color: #2a2a2a;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+}
+
+tr:nth-child(even) {
+    background-color: #222;
+}
+
+tr:hover {
+    background-color: #2e2e2e;
+}
+td button {
+    margin-right: 5px;
+    padding: 6px 10px;
+    font-size: 0.85rem;
+}
+
+td button:last-child {
+    background-color: red;
+    border:none;
+    border-radius :5px;
+    color:white;
+    cursor:pointer
 }
 
 @media (max-width: 768px) {
-    .icons{
-        display: inline-flex;
-    }
+    
+.student-form{
+    padding: 40px 5%;
+    background:black;
+    border-radius: 10px;
+    border:1px solid grey;
+    display:flex;
+    flex-direction: column;
+    gap:20px
+}
+       
 
 
-
-   #check:checked~.icons #close-icon {
-    display:block;
-   }
-
-     .icons #close-icon{
-        display:none;
-    }
-    /* .navbar{
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width:100%;
-        height:0;
-         background-color:#1e1e1e;
-         overflow: hidden;
-         transition: .3s ease;
-    } */
- 
-    #check:checked~.navbar {
-    height:17.7rem;
-   
-/* 
-    .navbar a {
-        display:block;
-        font-size: 1.1rem;
-        margin: 1.5rem 0;
-        text-align: center;
-        transform : translateY(-50px);
-        transition: .3s ease;
-    } */
-   
-       #check:checked~.navbar {
-           transform : translateY(0);
-         
-   }
-
-}}
+}

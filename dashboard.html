@@ -11,25 +11,20 @@
    
     
        <a href="home.html" class="hom"> <nav class="logo">StudentSync</nav></a>
-          <!-- <input type="checkbox" id="check">
-       <label for="check" class="icons">
-      <i class='bx bx-menu' id ="menu-icon"></i> 
-        <i class='bx bx-x' id ="close-icon"></i> 
-     </label>  -->
+  
       
       <nav class="navbar"> 
         
-         <!-- <a href="home.html"> Home</a>
-      <a href="About.html"   >  About</a>
-      <a href="features.html"> Features</a>
-       <a href="contact.html" >   Contact</a> -->
+     
        <a href="login.html"> <button class="signup">Log Out</button></a>
       </nav>
  
    
    
  </header>
-
+   <div class="welcome">
+    <h2 id="welcomeText" class="welcome">welcome</h2>
+   </div>
  <section class="hero">
     <div class="hero-content">
         <h1> Student Management Dashboard</h1>
@@ -77,20 +72,42 @@
 </section>
 
 <section class="student-section">
- <!-- <h2>Send a message</h2> -->
+    <h2>Add new student</h2>
 
- <div class="inp-section">
-      <form class="student-form" id="StudentForm">
-      <h2 >Add new student</h2>
-        <input type="text" id="name" placeholder=" Name" required>
-        <input type="email" id="email" placeholder=" Email" required>
-        <input type="number" id="email" placeholder=" score" required>
-      
-        <button type="submit">Add Student</button>
-    </form>
- </div>
-       
+    <div class="student-sectionContent">
+        <form class="student-form" id="studentForm">
+            <input type="text" id="studentName" placeholder="Enter Name" required>
+            <input type="email" id="studentEmail" placeholder="Enter Email" required>
+            <input type="number" id="studentScore" placeholder="Enter score" required>
+            <button type="submit" id="addTask">Add Student</button>
+        </form>
+    </div>
+</section>
+
+<section class="search">
+    <h2>Search Students</h2>
+<div class="searchInp">
+    <input type="text" id="searchInput" placeholder="Search by name or email" required>
+            <button type="submit" id="clearSearch">Clear</button>
+</div>
 
 </section>
+
+<section class="theTable">
+      <table border ="1" >
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Score</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="studentTable"></tbody>
+    </table>
+</section>
+
+<script src="dashboard.js"></script>
 </body>
 </html>
