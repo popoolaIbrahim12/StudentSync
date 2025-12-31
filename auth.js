@@ -1,8 +1,4 @@
-// document.getElementById("signUpForm").addEventListener("submit",e => {
-//     e.preventDefault()
 
-
-// })
 console.log("auth js is loaded");
 
 // signup

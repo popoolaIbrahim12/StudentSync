@@ -1,5 +1,4 @@
-// const loginEmail = document.getElementById("login-email").value
-// const loginPassword = document.getElementById("login-password").value
+
    
 document.getElementById("loginForm").addEventListener("submit", e => {
     e.preventDefault()
@@ -12,7 +11,7 @@ const loginPassword = document.getElementById("login-password").value.trim()
     if(
         storedUser &&
         loginEmail === storedUser.email &&
-        loginPasswordj === storedUser.password
+        loginPassword === storedUser.password
     ) {
         localStorage.setItem("isLoggedIn","true")
         window.location.href = "dashboard.html"
