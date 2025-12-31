@@ -12,9 +12,9 @@ console.log("auth js is loaded");
     e.preventDefault()
 
     
-    const name = document.getElementById("name-input").value
-    const email = document.getElementById("email-input").value
-    const password = document.getElementById("password-input").value
+    const name = document.getElementById("name-input").value.trim()
+    const email = document.getElementById("email-input").value.trim()
+    const password = document.getElementById("password-input").value.trim()
 
 
         if (name === "" || email === "" || password === "") {
@@ -23,9 +23,9 @@ console.log("auth js is loaded");
     }
 
     const user = {
-        name:name,
-        email:email,
-        password:password
+          email:email,
+         name:name,
+         password:password
     }
 
     localStorage.setItem("user",JSON.stringify(user))
@@ -37,8 +37,10 @@ console.log("auth js is loaded");
     window.location.href =  "login.html"
     })
 
-// login
-document.getElementById(loginForm).addEventListener("submit", e => {
+    const loginEmail = document.getElementById("login-email").value
+const loginPassword = document.getElementById("login-password").value
+
+document.getElementById("loginForm").addEventListener("submit", e => {
     e.preventDefault()
 
     const storedUser = JSON.parse(localStorage.getItem("user"))

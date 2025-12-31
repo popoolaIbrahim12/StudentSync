@@ -1,94 +1,179 @@
+console.log("dashboard");
 
-let students = JSON.parse(localStorage.getItem("students")) || []
-const addTask = document.getElementById("addTask")
-const searchInput = document.getElementById("searchInput")
-const clearSearch = document.getElementById("clearSearch")
 
-addTask.addEventListener("click",Addstudents)
+let students = []
+let editingId = null
 
-function Addstudents () {
-    
-  const name = document.getElementById("studentName").value
-  const email = document.getElementById("studentEmail").value
-  const score = document.getElementById("studentScore").value
+// Load students from localStorage on page load
+document.addEventListener("DOMContentLoaded", () => {
+  loadStudents()
+  renderStudents()
+  updateAnalytics()
+  setupEventListeners()
+})
 
-  if(!name || !email || !score){
-    alert("please fill all fields")
+// Setup event listeners
+function setupEventListeners() {
+  const form = document.getElementById("studentForm")
+  const searchInput = document.getElementById("searchInput")
+  const clearSearchBtn = document.getElementById("clearSearch")
+
+  form.addEventListener("submit", handleFormSubmit)
+  searchInput.addEventListener("input", handleSearch)
+  clearSearchBtn.addEventListener("click", clearSearch)
+}
+
+// Load students from localStorage
+function loadStudents() {
+  const stored = localStorage.getItem("students")
+  if (stored) {
+    students = JSON.parse(stored)
+  }
+}
+
+// Save students to localStorage
+function saveStudents() {
+  localStorage.setItem("students", JSON.stringify(students))
+}
+
+// Handle form submission
+function handleFormSubmit(e) {
+  e.preventDefault()
+
+  const name = document.getElementById("studentName").value.trim()
+  const email = document.getElementById("studentEmail").value.trim()
+  const score = Number.parseInt(document.getElementById("studentScore").value)
+
+  if (editingId !== null) {
+    // Update existing student
+    const student = students.find((s) => s.id === editingId)
+    student.name = name
+    student.email = email
+    student.score = score
+    editingId = null
+    document.getElementById("submitBtn").textContent = "Add Student"
+    document.getElementById("submitBtn").classList.remove("edit-mode")
+  } else {
+    // Add new student
+    const student = {
+      id: Date.now(),
+      name,
+      email,
+      score,
+    }
+    students.push(student)
+  }
+
+  saveStudents()
+  renderStudents()
+  updateAnalytics()
+  e.target.reset()
+}
+
+// Render students table
+function renderStudents(filteredStudents = null) {
+  const tbody = document.getElementById("studentTable")
+  const studentsToRender = filteredStudents || students
+
+  if (studentsToRender.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="5" class="no-data">No students found</td></tr>'
     return
   }
 
-  const student = {
-    id:Date.now(),
-    name,
-    email,
-    score
-
-  }
-
-  students.push(student )
-  localStorage.setItem("students",JSON.stringify(students))
-  console.log(student);
-  
-  renderStudents()
-  clearInputs()
-}
-
-function renderStudents (list = students) {
- const table = document.getElementById("studentTable")
- table.innerHTML = ""
-
- list.forEach(student => {
-    table.innerHTML += `
-    <tr>
-             <td>${student.id}</td>
-          <td>${student.name}</td>
-                <td>${student.email}</td>
-                <td>${student.score}</td>
-                <td>
-                    <button onclick="editStudent(${student.id})">Edit</button>
-                    <button onclick="deleteStudent(${student.id})">Delete</button>
-                </td>
-            </tr>
-    `
- })
-
- updateStats()
- }
-
- renderStudents()
-
-
- function deleteStudent (id) {
-  students = students.filter(student => student.id !== id);
-  localStorage.setItem("students",JSON.stringify(students))
-  renderStudents()
- }
-
- function editStudent (id) {
- const student = students.find(s => s.id === id);
-  
- document.getElementById("studentName").value = student.name
- document.getElementById("studentEmail").value = student.email
- document.getElementById("studentScore").value = student.score
-
- deleteStudent(id)
- }
-
- searchInput.addEventListener("input",searchStudent)
-
- function searchStudent () {
-    const searchValue = document.getElementById("searchInput").value.toLowerCase().trim()
-
-     const filtered = students.filter((student) => 
-      student.name.toLowerCase().includes(searchValue) ||
-     student.email.toLowerCase().includes(searchValue)
+  tbody.innerHTML = studentsToRender
+    .map(
+      (student) => `
+        <tr>
+            <td>${student.id}</td>
+            <td>${student.name}</td>
+            <td>${student.email}</td>
+            <td>${student.score}</td>
+            <td>
+                <div class="action-buttons">
+                    <button class="btn-edit" onclick="editStudent(${student.id})">Edit</button>
+                    <button class="btn-delete" onclick="deleteStudent(${student.id})">Delete</button>
+                </div>
+            </td>
+        </tr>
+    `,
     )
 
-    renderStudents(filtered)
- }
+    .join("")
+}
 
- clearSearch.addEventListener("click",clearSearch)
- function clearSearch () {
-    document.getElementById("serachInput").value = ""
+// Edit student
+function editStudent(id) {
+  const student = students.find((s) => s.id === id)
+  if (!student) return
+
+  document.getElementById("studentName").value = student.name
+  document.getElementById("studentEmail").value = student.email
+  document.getElementById("studentScore").value = student.score
+
+  editingId = id
+  document.getElementById("submitBtn").textContent = "Update Student"
+  document.getElementById("submitBtn").classList.add("edit-mode")
+
+  // Scroll to form
+  document.getElementById("studentForm").scrollIntoView({ behavior: "smooth" })
+}
+
+// Delete student
+function deleteStudent(id) {
+  if (confirm("Are you sure you want to delete this student?")) {
+    students = students.filter((s) => s.id !== id)
+    saveStudents()
     renderStudents()
- }
+    updateAnalytics()
+  }
+}
+
+// Handle search
+function handleSearch(e) {
+  const searchTerm = e.target.value.toLowerCase().trim()
+
+  if (searchTerm === "") {
+    renderStudents()
+    return
+  }
+
+  const filtered = students.filter(
+    (student) => student.name.toLowerCase().includes(searchTerm) || student.email.toLowerCase().includes(searchTerm),
+  )
+
+  renderStudents(filtered)
+}
+
+// Clear search
+function clearSearch() {
+  document.getElementById("searchInput").value = ""
+  renderStudents()
+}
+
+// Update analytics
+function updateAnalytics() {
+  const totalStudents = students.length
+  document.getElementById("totalStudents").textContent = totalStudents
+
+  if (totalStudents === 0) {
+    document.getElementById("AverageScore").textContent = "0"
+    document.getElementById("HighestScore").textContent = "0"
+    document.getElementById("TopStudent").text
+      Content = "-"
+    return
+  }
+
+  // Calculate average score
+  const totalScore = students.reduce((sum, student) => sum + student.score, 0)
+  const averageScore = (totalScore / totalStudents).toFixed(1)
+  document.getElementById("AverageScore").textContent = averageScore
+
+  // Find highest score
+  const highestScore = Math.max(...students.map((s) => s.score))
+  document.getElementById("HighestScore").textContent = highestScore
+
+  // Find top student
+  const topStudent = students.find((s) => s.score === highestScore)
+  document.getElementById("TopStudent").textContent = topStudent ? topStudent.name : "-"
+}
+

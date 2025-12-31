@@ -282,8 +282,42 @@ td button:last-child {
     display:flex;
     flex-direction: column;
     gap:20px
+
 }
-       
+    
+
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+
+    thead {
+        display: none;
+    }
+
+    tr {
+        margin-bottom: 15px;
+        background-color: #1e1e1e;
+        border-radius: 8px;
+        padding: 10px;
+    }
+
+    td {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px 0;
+    }
+
+    td::before {
+        font-weight: bold;
+        color: #aaa;
+    }
+   td:nth-child(1)::before { content: "id"; }
+    td:nth-child(2)::before { content: "Name"; }
+    td:nth-child(3)::before { content: "Email"; }
+    td:nth-child(4)::before { content: "Score"; }
+    td:nth-child(5)::before { content: "Actions"; }
+
+
 
 
 }
