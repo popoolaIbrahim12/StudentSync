@@ -7,7 +7,7 @@
 body{
     background-color:  #121212;
     width:  100vw;
-   height:100vh;
+   min-height:100vh;
 
    overflow-x:hidden ;
 }
@@ -68,11 +68,17 @@ margin-left: 2.5rem;
 .hom{
     text-decoration:none;
 }
+/* .welcome{
+    margin-top:20px;
+    padding:20px 10%;
+    background:#121212;
+} */
 .welcomeText{
+    margin-bottom: 90px  ;
     font-size:2rem;
     margin-bottom: 1rem;
     color:#35469B ;
-    /* z-index: 10; */
+    
 }
 .hero{
     min-height: 45vh;

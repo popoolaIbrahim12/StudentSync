@@ -6,9 +6,9 @@ let editingId = null
 
 // Load students from localStorage on page load
 document.addEventListener("DOMContentLoaded", () => {
+     userName()
     protectDashboard()
-    userName()
-  loadStudents()
+   loadStudents()
   renderStudents()
   updateAnalytics()
   setupEventListeners()
@@ -37,10 +37,11 @@ function saveStudents() {
   localStorage.setItem("students", JSON.stringify(students))
 }
 
+
 function userName () {
  const user = JSON.parse(localStorage.getItem("user"))
  const body = document.body
- const add = document.createElement("h2").textContent =`welcome ${user.name}` 
+ const add = document.getElementById("welcomeText").textContent =`welcome ${user.name}` 
 // add.style.color = "#35469B"
 // add.style.fontSize = "2rem"
 // add.style.fontFamily = "sans-serif"
