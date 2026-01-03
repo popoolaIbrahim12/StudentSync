@@ -6,11 +6,14 @@ let editingId = null
 
 // Load students from localStorage on page load
 document.addEventListener("DOMContentLoaded", () => {
+    protectDashboard()
+    userName()
   loadStudents()
   renderStudents()
   updateAnalytics()
   setupEventListeners()
 })
+
 
 // Setup event listeners
 function setupEventListeners() {
@@ -29,12 +32,39 @@ function loadStudents() {
   if (stored) {
     students = JSON.parse(stored)
   }
-}
-
-// Save students to localStorage
+  }
 function saveStudents() {
   localStorage.setItem("students", JSON.stringify(students))
 }
+
+function userName () {
+ const user = JSON.parse(localStorage.getItem("user"))
+ const body = document.body
+ const add = document.createElement("h2").textContent =`welcome ${user.name}` 
+// add.style.color = "#35469B"
+// add.style.fontSize = "2rem"
+// add.style.fontFamily = "sans-serif"
+//  if(!user ) return
+body.append(add)
+
+ console.log(add);
+
+}
+// userName()
+
+function protectDashboard () {
+    const isLoggedIn = localStorage.getItem("isLoggedIn")
+
+    if(isLoggedIn !== "true"){
+        window.location.href = "login.html"
+    }
+}
+// logout
+document.getElementById("logoutBtn").addEventListener("click",() =>{
+    localStorage.removeItem("isLoggedIn")
+    window.location.href = "login.html"
+})
+
 
 // Handle form submission
 function handleFormSubmit(e) {
@@ -43,6 +73,7 @@ function handleFormSubmit(e) {
   const name = document.getElementById("studentName").value.trim()
   const email = document.getElementById("studentEmail").value.trim()
   const score = Number.parseInt(document.getElementById("studentScore").value)
+
 
   if (editingId !== null) {
     // Update existing student
@@ -63,6 +94,8 @@ function handleFormSubmit(e) {
     }
     students.push(student)
   }
+
+
 
   saveStudents()
   renderStudents()

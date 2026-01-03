@@ -68,10 +68,11 @@ margin-left: 2.5rem;
 .hom{
     text-decoration:none;
 }
-.welcome{
-    height:5vh;
+.welcomeText{
+    font-size:2rem;
     margin-bottom: 1rem;
-    background-color:#35469B 
+    color:#35469B ;
+    /* z-index: 10; */
 }
 .hero{
     min-height: 45vh;
