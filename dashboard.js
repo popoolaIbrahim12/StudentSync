@@ -48,7 +48,7 @@ function userName () {
 //  if(!user ) return
 body.append(add)
 
- console.log(add);
+//  console.log(add);
 
 }
 // userName()
@@ -75,7 +75,15 @@ function handleFormSubmit(e) {
   const email = document.getElementById("studentEmail").value.trim()
   const score = Number.parseInt(document.getElementById("studentScore").value)
 
+   if (name === "" || email === "" || score === ""){
+    return
+   }
 
+   if(isNaN(score) || score < 0 || score > 100){
+    alert("score must be a number between 0 and 100")
+    document.getElementById("studentScore").focus()
+    return
+   }
   if (editingId !== null) {
     // Update existing student
     const student = students.find((s) => s.id === editingId)
@@ -91,7 +99,7 @@ function handleFormSubmit(e) {
       id: Date.now(),
       name,
       email,
-      score,
+      score
     }
     students.push(student)
   }
