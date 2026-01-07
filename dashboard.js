@@ -6,8 +6,9 @@ let editingId = null
 
 // Load students from localStorage on page load
 document.addEventListener("DOMContentLoaded", () => {
-     userName()
-    protectDashboard()
+     protectDashboard()   
+  userName()
+ 
    loadStudents()
   renderStudents()
   updateAnalytics()
